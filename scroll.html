@@ -20,22 +20,26 @@
     <div style="width:200px;height:10000px;background-color:red"></div>
 
     <script>
-     var synth = new Tone.Synth({
-       "oscillator" : {
-         "type" : "pwm",
-         "modulationFrequency" : 0.2
-       },
-       "envelope" : {
-         "attack" : 0.02,
-         "decay" : 0.1,
-         "sustain" : 0.2,
-         "release" : 0.9,
-       }
-     }).toMaster();
+     $("#freq").click(function() {
+       var synth = new Tone.Synth({
+         "oscillator" : {
+           "type" : "pwm",
+           "modulationFrequency" : 0.2
+         },
+         "envelope" : {
+           "attack" : 0.02,
+           "decay" : 0.1,
+           "sustain" : 0.2,
+           "release" : 0.9,
+         }
+       }).toMaster();
+     });
 
      function playSound(freq) {
+       if (synth) {
          synth.triggerAttack(freq, "0.1s");
          $("#freq").text(freq);
+       }
      }
 
      $(document).ready(function() {
