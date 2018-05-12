@@ -75,16 +75,18 @@
 
      window.addEventListener('deviceorientation', function(event) {
        var xTilt = event.beta; // -90 -- 90
-       var freq = (xTilt + 90) / 180 * 400 + 200;
+       var freq = (xTilt + 90) / 180 * 800 + 200;
        playSound(freq);
      });
 
      window.addEventListener('deviceorientation', function(event) {
        var direction = event.alpha; // 0 -- 360
 
-       var dist = (event.alpha / 360.0);
-       //var filter = new Tone.Distortion(dist).toMaster();
-       filter.wet = dist;
+       if (filter) {
+         var dist = (event.alpha / 360.0);
+         //var filter = new Tone.Distortion(dist).toMaster();
+         filter.wet = dist;
+       };
 
        //var freq = direction / 360.0 * 200 + 200;
        //var filter = new Tone.Filter(freq, "highpass").toMaster();
