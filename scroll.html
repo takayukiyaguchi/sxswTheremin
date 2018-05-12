@@ -71,13 +71,14 @@
      window.addEventListener('deviceorientation', function(event) {
        var xTilt = event.beta; // -90 -- 90
        var freq = (xTilt + 90) / 180 * 400 + 200;
-       //playSound(freq);
+       playSound(freq);
      });
 
      window.addEventListener('deviceorientation', function(event) {
        var direction = event.alpha; // 0 -- 360
-       var freq = direction / 360.0 * 400 + 200;
-       playSound(freq);
+       var freq = direction / 360.0 * 200 + 200;
+
+       var filter = new Tone.Filter(freq, "highpass").toMaster();
      });
 
     </script>
