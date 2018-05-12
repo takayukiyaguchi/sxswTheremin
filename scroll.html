@@ -48,12 +48,9 @@
        $("#freq").click(function() {
          console.log("clicked");
          if (!synth) {
-           filter = new Tone.Vibrato(100, 0).toMaster();
-           //filter = new Tone.Distortion(1).toMaster();
+           //filter = new Tone.Vibrato(100, 0).toMaster();
+           filter = new Tone.Distortion(1).toMaster();
 
-           synth = new Tone.FMSynth().toMaster();
-
-           /*
            synth = new Tone.Synth({
              "oscillator" : {
                "type" : "pwm",
@@ -66,8 +63,10 @@
                "release" : 0.9,
              }
            }).toMaster();
-            */
            synth.connect(filter);
+
+           var reverb = new Tone.Freeverb().toMaster();
+           synth.connect(reverb);
          };
        });
 
@@ -97,7 +96,6 @@
 
        //var freq = direction / 360.0 * 200 + 200;
        //var filter = new Tone.Filter(freq, "highpass").toMaster();
-
 
      });
 
