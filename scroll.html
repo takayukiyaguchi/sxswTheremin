@@ -78,8 +78,12 @@
 
      window.addEventListener('deviceorientation', function(event) {
        var direction = event.alpha; // 0 -- 360
-       var freq = direction / 360.0 * 200 + 200;
-       var filter = new Tone.Filter(freq, "highpass").toMaster();
+
+       var dist = (event.alpha / 360.0);
+       var filter = new Tone.Distortion(dist).toMaster();
+
+       //var freq = direction / 360.0 * 200 + 200;
+       //var filter = new Tone.Filter(freq, "highpass").toMaster();
      });
 
     </script>
