@@ -17,38 +17,43 @@
   <body>
 
     <div id="freq"></div>
-    <div id="box" style="width:200px;height:10000px;background-color:red"></div>
+    <div id="box" style="width:200px;height:10000px;background-color:red">touch here to start</div>
 
     <script>
      var synth = null;
 
-     $("#box").click(function() {
-       synth = new Tone.Synth({
-         "oscillator" : {
-           "type" : "pwm",
-           "modulationFrequency" : 0.2
-         },
-         "envelope" : {
-           "attack" : 0.02,
-           "decay" : 0.1,
-           "sustain" : 0.2,
-           "release" : 0.9,
-         }
-       }).toMaster();
-     });
-
      function playSound(freq) {
        if (synth) {
-         synth.triggerAttack(freq, "0.1s");
+         synth.triggerAttack(freq, "1s");
          $("#freq").text(freq);
        }
      }
 
      $(document).ready(function() {
+
+       $("#box").click(function() {
+         console.log("clicked");
+         synth = new Tone.Synth({
+           "oscillator" : {
+             "type" : "pwm",
+             "modulationFrequency" : 0.2
+           },
+           "envelope" : {
+             "attack" : 0.02,
+             "decay" : 0.1,
+             "sustain" : 0.2,
+             "release" : 0.9,
+           }
+         }).toMaster();
+       });
+
+       /*
        $(window).scroll(function() {
          var freq = parseInt($(window).scrollTop() / 10000 * 400 + 200);
+         console.log(freq);
          playSound(freq);
        });
+       */
      });
 
      window.addEventListener('deviceorientation', function(event) {
