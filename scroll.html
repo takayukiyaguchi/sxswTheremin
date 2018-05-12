@@ -81,9 +81,10 @@
 
      window.addEventListener('deviceorientation', function(event) {
        var direction = event.alpha; // 0 -- 360
-
+       console.log("direction: " + direction);
        if (filter) {
          var dist = (event.alpha / 360.0);
+         console.log("dist: " + dist);
          //var filter = new Tone.Distortion(dist).toMaster();
          filter.wet = dist;
        };
