@@ -60,7 +60,8 @@
                "release" : 0.9,
              }
            }).toMaster();
-           filter = new Tone.Distortion(1).toMaster();
+           //filter = new Tone.Distortion(1).toMaster();
+           filter = new Tone.Vibrato(100, 0);
            synth.connect(filter);
          };
        });
@@ -69,7 +70,7 @@
          var freq = parseInt($(window).scrollTop() / 10000 * 400 + 200);
          console.log(freq);
          //playSound(freq);
-         var filter = new Tone.Filter(freq, "highpass").toMaster();
+         //var filter = new Tone.Filter(freq, "highpass").toMaster();
        });
      });
 
@@ -84,7 +85,7 @@
        console.log("direction: " + direction);
        if (filter) {
          var dist = (event.alpha / 360.0);
-         console.log("dist: " + dist);
+         console.log("wet: " + dist);
          //var filter = new Tone.Distortion(dist).toMaster();
          filter.wet = dist;
        };
