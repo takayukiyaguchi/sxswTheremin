@@ -17,11 +17,13 @@
   <body>
 
     <div id="freq"></div>
-    <div style="width:200px;height:10000px;background-color:red"></div>
+    <div id="box" style="width:200px;height:10000px;background-color:red"></div>
 
     <script>
-     $("#freq").click(function() {
-       var synth = new Tone.Synth({
+     var synth = null;
+
+     $("#box").click(function() {
+       synth = new Tone.Synth({
          "oscillator" : {
            "type" : "pwm",
            "modulationFrequency" : 0.2
